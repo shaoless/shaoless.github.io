@@ -1,8 +1,8 @@
-theme: jekyll-theme-chirpy
+theme: minima
 
-title: Shaoless
-author: Shaoless
+title: shaoless
+author: shaoless
 email: zhangfeivariflight@gmail.com
 # social links
-github_username:  Jsamchow # DO NOT include the @ character, or else the build will fail!
+github_username:  shaoless # DO NOT include the @ character, or else the build will fail!
 show_excerpts: false # set to false to remove excerpts on the homepage
