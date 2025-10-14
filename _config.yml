@@ -38,6 +38,6 @@ jekyll-archives:
 
 # -------------------- 博客文章设置 --------------------
 show_excerpts: true
-head_scripts:
+head_links:
   - /assets/css/custom.css
 copyright: "Copyright &copy; 2021 Zen. All rights reserved."
