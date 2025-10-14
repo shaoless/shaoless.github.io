@@ -29,9 +29,9 @@ excerpt: "软件破解流程记录"
 
 5. 因为通过dll文件无法确定内部逻辑，所以我转换了思路，通过IL语言查看工具想查看dll文件的源码。开始我使用之前了解到的ILSpy工具，但是由于ILSpy工具的功能有限，导致无法快速定位到需要的源码。后来我问了deepseek，他给我推荐了一些工具，具体如下：
 
-   - dnSpy：免费的.NET反编译工具，可以反编译dll文件，可以查看源码，还可以直接调试运行。并且给出了下载地址:[dnSpy下载](https://github.com/0xd4d/dnSpy/releases,点击下载).
+   - dnSpy：免费的.NET反编译工具，可以反编译dll文件，可以查看源码，还可以直接调试运行。并且给出了下载地址:[dnSpy下载](https://github.com/0xd4d/dnSpy/releases)。
 
-   - dotPeek (JetBrains) 支持生成PDB文件、反混淆效果较好。下载地址：[dotPeek下载](https://www.jetbrains.com/decompiler/,点击下载)。
+   - dotPeek (JetBrains) 支持生成PDB文件、反混淆效果较好。下载地址：[dotPeek下载](https://www.jetbrains.com/decompiler/)。
 
 6. 最终用了dnSpy，打开LM.dll文件，可以看到里面有许多与授权相关的类，包括：
 
