@@ -38,3 +38,5 @@ jekyll-archives:
 
 # -------------------- 博客文章设置 --------------------
 show_excerpts: true
+head_scripts:
+  - /assets/css/custom.css
