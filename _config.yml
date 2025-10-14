@@ -40,3 +40,4 @@ jekyll-archives:
 show_excerpts: true
 
 copyright: "Copyright &copy; 2021 Zen. All rights reserved."
+powered_by: "Hosted by GitHub Pages"
