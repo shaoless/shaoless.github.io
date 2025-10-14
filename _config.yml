@@ -1,21 +1,39 @@
-theme: jekyll-theme-cayman
+# -------------------- 主题配置 --------------------
+# 移除 theme: jekyll-theme-cayman
+remote_theme: chirpy-theme/jekyll-theme-chirpy
 
-title: zen
+# -------------------- 网站基本信息 --------------------
+title: Zen Blog # 你的博客标题
 author: zen
 email: zhangfeivariflight@gmail.com
-# social links
-github_username:  shaoless # DO NOT include the @ character, or else the build will fail!
-show_excerpts: true # set to false to remove excerpts on the homepage
+url: "https://你的GitHub用户名.github.io" # 你的博客域名
+lang: zh-CN # 语言设置
+timezone: Asia/Shanghai # 时区设置
+
+# -------------------- Chirpy 特有配置 --------------------
+# 启用搜索、深色模式等
+tag_page: /tags/
+category_page: /categories/
+toc:
+  enabled: true # 启用 TOC (文章目录)
+
+# -------------------- 插件配置 --------------------
 plugins:
   - jekyll-archives
+  - jekyll-search
+  - jekyll-sitemap
+# (Chirpy 主题通常已经内置了大量所需功能，无需额外添加太多插件)
 
+# -------------------- 档案配置 (保持不变) --------------------
 jekyll-archives:
   enabled: ['categories', 'tags']
   layout: 'archive'
   permalinks:
     category: '/categories/:name/'
     tag: '/tags/:name/'
-plugins:
-  - jekyll-search
-plugins:
-  - jekyll-sitemap
+
+# -------------------- 导航栏链接 (Chirpy 专用) --------------------
+# Chirpy 的导航链接通常配置在 _data/tabs.yml 文件中，但你可以在这里先定义
+
+# -------------------- 博客文章设置 --------------------
+show_excerpts: true
