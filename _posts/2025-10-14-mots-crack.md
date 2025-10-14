@@ -3,7 +3,7 @@
 layout: single        # 使用单篇文章布局
 title: "软件破解流程记录"
 date: 2025-10-14 10:00:00 +0800 # 确保日期格式正确
-categories: [日常记录]
+categories: [daily]
 tags: [破解]
 excerpt: "软件破解流程记录"
 ---
