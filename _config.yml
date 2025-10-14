@@ -1,8 +1,21 @@
-theme: minima
+theme: jekyll-theme-cayman
 
-title: shaoless
-author: shaoless
+title: zen
+author: zen
 email: zhangfeivariflight@gmail.com
 # social links
 github_username:  shaoless # DO NOT include the @ character, or else the build will fail!
-show_excerpts: false # set to false to remove excerpts on the homepage
+show_excerpts: true # set to false to remove excerpts on the homepage
+plugins:
+  - jekyll-archives
+
+jekyll-archives:
+  enabled: ['categories', 'tags']
+  layout: 'archive'
+  permalinks:
+    category: '/categories/:name/'
+    tag: '/tags/:name/'
+plugins:
+  - jekyll-search
+plugins:
+  - jekyll-sitemap
