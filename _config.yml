@@ -3,10 +3,10 @@
 remote_theme: mmistakes/minimal-mistakes # 使用 remote_theme 代替 theme
 
 # -------------------- 网站基本信息 --------------------
-title: My Zen Blog
+title: Zen Blog
 author: zen
 email: zhangfeivariflight@gmail.com
-url: "https://你的GitHub用户名.github.io"
+url: "https://shaoless.github.io"
 
 # -------------------- Minimal Mistakes 特有配置 --------------------
 # Minimal Mistakes 需要定义一个 skin (皮肤)
