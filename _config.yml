@@ -1,28 +1,30 @@
 # -------------------- 主题配置 --------------------
 # 移除 theme: jekyll-theme-cayman
-remote_theme: chirpy-theme/jekyll-theme-chirpy
+remote_theme: mmistakes/minimal-mistakes # 使用 remote_theme 代替 theme
 
 # -------------------- 网站基本信息 --------------------
-title: Zen Blog # 你的博客标题
+title: My Zen Blog
 author: zen
 email: zhangfeivariflight@gmail.com
-url: "https://你的GitHub用户名.github.io" # 你的博客域名
-lang: zh-CN # 语言设置
-timezone: Asia/Shanghai # 时区设置
+url: "https://你的GitHub用户名.github.io"
 
-# -------------------- Chirpy 特有配置 --------------------
-# 启用搜索、深色模式等
-tag_page: /tags/
-category_page: /categories/
-toc:
-  enabled: true # 启用 TOC (文章目录)
+# -------------------- Minimal Mistakes 特有配置 --------------------
+# Minimal Mistakes 需要定义一个 skin (皮肤)
+minimal_mistakes_skin: "default" # 可选 "default", "air", "dirt", "neon" 等
+# 启用 Table of Contents
+toc: true
+toc_label: "文章目录"
+toc_icon: "bars"
+toc_sticky: true # 让目录在滚动时保持固定
 
 # -------------------- 插件配置 --------------------
 plugins:
   - jekyll-archives
   - jekyll-search
   - jekyll-sitemap
-# (Chirpy 主题通常已经内置了大量所需功能，无需额外添加太多插件)
+  - jekyll-include-cache # Minimal Mistakes 推荐的插件
+
+# ... 其他配置保持不变
 
 # -------------------- 档案配置 (保持不变) --------------------
 jekyll-archives:
