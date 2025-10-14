@@ -6,11 +6,6 @@ date: 2025-10-14 10:00:00 +0800 # 确保日期格式正确
 categories: [日常记录]
 tags: [破解]
 excerpt: "软件破解流程记录"
-
-# 开启 TOC (文章导航)
-toc: true
-toc_label: "文章目录"
-toc_icon: "bars"
 ---
 
 

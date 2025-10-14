@@ -4,13 +4,13 @@ remote_theme: mmistakes/minimal-mistakes # 使用 remote_theme 代替 theme
 
 # -------------------- 网站基本信息 --------------------
 title: Zen Blog
-author: zen
+author: Zen
 email: zhangfeivariflight@gmail.com
 url: "https://shaoless.github.io"
 
 # -------------------- Minimal Mistakes 特有配置 --------------------
 # Minimal Mistakes 需要定义一个 skin (皮肤)
-minimal_mistakes_skin: "default" # 可选 "default", "air", "dirt", "neon" 等
+minimal_mistakes_skin: "dirt" # 可选 "default", "air", "dirt", "neon" 等
 # 启用 Table of Contents
 toc: true
 toc_label: "文章目录"
@@ -28,7 +28,7 @@ plugins:
 
 # -------------------- 档案配置 (保持不变) --------------------
 jekyll-archives:
-  enabled: ['categories', 'tags']
+  enabled: ['categories','tags']
   layout: 'archive'
   permalinks:
     category: '/categories/:name/'
