@@ -1,7 +1,7 @@
 ---
-layout: home # Minimal Mistakes 常用的文章布局模板
-title: "关于我"
+layout: home
+title: 首页
 permalink: /
 ---
 
-
+<!-- 首页特定内容已经在 home 布局中定义 -->

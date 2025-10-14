@@ -23,9 +23,22 @@ plugins:
   - jekyll-search
   - jekyll-sitemap
   - jekyll-include-cache # Minimal Mistakes 推荐的插件
-
+paginate: 10
+paginate_path: "/blog/page:num/"
 # ... 其他配置保持不变
-
+navigation:
+  - title: 首页
+    url: /
+  - title: 博客
+    url: /blog/
+  - title: 分类
+    url: /categories/
+  - title: 标签
+    url: /tags/
+  - title: 归档
+    url: /archive.html
+  - title: 关于
+    url: /about.html
 # -------------------- 档案配置 (保持不变) --------------------
 jekyll-archives:
   enabled: ['categories','tags']
