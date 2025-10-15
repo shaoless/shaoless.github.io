@@ -12,7 +12,7 @@ twitter_username: Jsamchow
 linkedin_username: wenjun-zhang-66261b8b
 # -------------------- Minimal Mistakes 特有配置 --------------------
 # Minimal Mistakes 需要定义一个 skin (皮肤)
-minimal_mistakes_skin: "sunrise" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "plum" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 # 启用 Table of Contents
 toc: true
 toc_label: "文章目录"
