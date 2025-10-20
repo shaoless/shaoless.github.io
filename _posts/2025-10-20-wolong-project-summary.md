@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: Wolong Project Summary
 date: 2025-10-20
 author: Shaoless
