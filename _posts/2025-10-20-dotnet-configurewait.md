@@ -2,7 +2,7 @@
 layout: single # 使用单篇文章布局
 title: ".NET中的异步编程一个小点"
 date: 2025-10-20 10:07:00 +0800 # 确保日期格式正确
-categories: [daily]
+categories: [dev]
 tags: [.net, async]
 excerpt: "怎么学习异步编程"
 ---
