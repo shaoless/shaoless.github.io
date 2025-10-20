@@ -21,9 +21,11 @@ toc_sticky: true # 让目录在滚动时保持固定
 
 # -------------------- 插件配置 --------------------
 plugins:
+  - jekyll-feed
   - jekyll-archives
   - jekyll-search
   - jekyll-sitemap
+  - jemoji
   - jekyll-include-cache # Minimal Mistakes 推荐的插件
 paginate: 10
 paginate_path: "/blog/page:num/"
