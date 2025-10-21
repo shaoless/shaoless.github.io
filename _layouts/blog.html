@@ -1,0 +1,122 @@
+---
+layout: default  # 引用 default 布局作为父级
+---
+<div class="page-container document-layout">
+    <header class="document-header">
+        <h1>{{ page.title | escape }}</h1>
+        {% if page.description %}
+            <p class="description">{{ page.description }}</p>
+        {% endif %}
+    </header>
+    <section class="document-list">
+        <div class="document-list-intro">
+            {{ content }}
+        </div>
+        <ul class="pdf-list-grid">
+        {% for post in site.posts %}
+            <li class="pdf-item">
+                <a href="{{ post.url | relative_url }}" target="_blank" class="pdf-link">
+                    <span class="icon-pdf" aria-hidden="true">
+                        &#x1F4C4; </span>
+                    <div class="pdf-details">
+                        <div class="pdf-title">{{ post.title | escape }}</div>
+                        <div class="pdf-meta">
+                            {{ post.excerpt | strip_html | truncate: 150 }}
+                            {% if post.date %} | {{ post.date | date: "%Y-%m-%d" }}{% endif %}
+                        </div>
+                    </div>
+                    <span class="icon-view">
+                        →
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+</div>
+
+<style>
+.document-layout {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #eee;
+}
+
+.document-header h1 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.document-header .description {
+    color: #7f8c8d;
+    font-size: 1em;
+}
+
+.pdf-list-grid {
+    list-style: none; /* 移除默认的列表点 */
+    padding: 0;
+    margin: 0;
+}
+
+.pdf-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pdf-item:hover {
+    transform: translateY(-3px); /* 鼠标悬停时轻微上浮 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-link {
+    display: flex; /* 使用 Flex 布局进行对齐 */
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.icon-pdf {
+    font-size: 2em; /* 增大图标大小 */
+    color: #e74c3c; /* 红色/文件色 */
+    margin-right: 15px;
+}
+
+.pdf-details {
+    flex-grow: 1; /* 占据剩余空间 */
+    text-align: left;
+}
+
+.pdf-title {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #34495e;
+    margin-bottom: 3px;
+    transition: color 0.2s;
+}
+
+.pdf-link:hover .pdf-title {
+    color: #2980b9; /* 悬停时标题变色 */
+}
+
+.pdf-meta {
+    font-size: 0.9em;
+    color: #95a5a6;
+}
+
+.icon-view {
+    font-size: 1.5em;
+    color: #bdc3c7;
+    margin-left: 20px;
+}
+</style>
