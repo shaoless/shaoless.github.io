@@ -1,5 +1,5 @@
 ---
-layout: documents
+layout: categories
 title: 文档列表
 permalink: /documents/
 ---
