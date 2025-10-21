@@ -9,13 +9,10 @@ layout: default  # 引用 default 布局作为父级
             <p class="description">{{ page.description }}</p>
         {% endif %}
     </header>
-
     <section class="document-list">
-        
         <div class="document-list-intro">
             {{ content }}
         </div>
-        
         <ul class="pdf-list-grid">
         {% for doc in site.data.pdfs %}
             <li class="pdf-item">
@@ -36,7 +33,6 @@ layout: default  # 引用 default 布局作为父级
             </li>
         {% endfor %}
         </ul>
-
     </section>
 </div>
 
@@ -54,14 +50,14 @@ layout: default  # 引用 default 布局作为父级
 }
 
 .document-header h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     color: #2c3e50;
     margin-bottom: 10px;
 }
 
 .document-header .description {
     color: #7f8c8d;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .pdf-list-grid {
