@@ -1,13 +1,13 @@
 main:
   - title: 首页
     url: /
-  - title: 文档
-    url: /documents/
   - title: 博客
     url: /blog/
   - title: 分类
     url: /categories/
   - title: 标签
     url: /tags/
+  - title: 文档
+    url: /documents/
   - title: 关于
     url: /about/

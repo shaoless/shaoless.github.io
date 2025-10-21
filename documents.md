@@ -2,7 +2,7 @@
 layout: documents  # 引用新的布局
 title: 网站文档
 permalink: /documents/
-description: 查阅本站所有的公开文档和报告。
+description: 查阅本站所有的公开文档和报告
 ---
 
 <!--## 网站文档
