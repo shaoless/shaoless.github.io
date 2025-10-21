@@ -3,6 +3,8 @@ main:
     url: /
   - title: 文档
     url: /documents/
+  - title: 博客
+    url: /blog/
   - title: 分类
     url: /categories/
   - title: 标签
