@@ -1,6 +1,7 @@
 # <--- 在 assets/pdf/ 中
 - title: 关于国家授时中心遭受美国国家安全局网络攻击事件的技术分析报告
-  filename: IncidentReport_202510191425.pdf  
+  filename: IncidentReport_202510191425.pdf
+  date: 2025-10-19  
 
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
