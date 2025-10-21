@@ -19,7 +19,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
   
     - ConfigureAwait(false)的作用
 
-    ```C#
+    ```csharp
     // 默认行为（相当于 ConfigureAwait(true)）
     await SomeAsyncMethod(); // 在原始上下文恢复执行
 
@@ -30,7 +30,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 2. false和true的区别
     - ConfigureAwait(true) 或 默认：
 
-    ```C#
+    ```csharp
     // UI 线程中调用
     await SomeAsyncMethod(); // 异步完成后回到 UI 线程继续执行
     button.Content = "完成"; // 这行在 UI 线程执行（安全）
@@ -38,7 +38,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
     - ConfigureAwait(false)
 
-    ```C#
+    ```csharp
     // UI 线程中调用
     await SomeAsyncMethod().ConfigureAwait(false); // 异步完成后可能在线程池线程继续
     button.Content = "完成"; // ❌ 可能抛出异常（非UI线程操作UI）
@@ -48,7 +48,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
 1. UI 应用程序（WPF/WinForms）
 
-    ```C#
+    ```csharp
     public async void Button_Click(object sender, EventArgs e)
     {
         // 从网络加载数据
@@ -74,7 +74,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
 2. ASP.NET / Web API
 
-    ```C#
+    ```csharp
     public async Task<ActionResult> GetData()
     {
         // 在ASP.NET中，没有UI线程概念
@@ -87,7 +87,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
 3. 库代码
 
-    ```C#
+    ```csharp
     public class DataService
     {
         public async Task<string> GetDataAsync()
@@ -106,7 +106,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
     - 使用 ConfigureAwait(false) 的性能优势
 
-    ```C#
+    ```csharp
     // 线程池环境
     await Task.Delay(1000).ConfigureAwait(false);
     // 恢复时使用任意线程池线程，开销小
@@ -118,7 +118,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 2. 死锁风险
     - 容易导致死锁的代码：
 
-    ```C#
+    ```csharp
     // ❌ 危险代码（在UI线程中）
     var result = GetDataAsync().Result; // 或 .Wait()
 
@@ -143,7 +143,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
     - 使用 ConfigureAwait(false) 的情况：
 
-    ```C#
+    ```csharp
     // 1. 库/服务层代码
     public async Task<Data> GetDataAsync()
     {
@@ -167,7 +167,7 @@ ConfigureAwait(false)是异步编程中控制上下文恢复的重要配置
 
     - 不使用 ConfigureAwait(false) 的情况：
 
-    ```C#
+    ```csharp
     // 1. UI 事件处理程序中需要更新UI
     private async void Button_Click(object sender, EventArgs e)
     {
