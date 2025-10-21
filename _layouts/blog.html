@@ -15,7 +15,7 @@ layout: default  # 引用 default 布局作为父级
         <ul class="pdf-list-grid">
         {% for post in site.posts %}
             <li class="pdf-item">
-                <a href="{{ post.url | relative_url }}" target="_blank" class="pdf-link">
+                <a href="{{ post.url | relative_url }}" class="post-link">
                     <span class="icon-pdf" aria-hidden="true">
                         &#x1F4C4; </span>
                     <div class="pdf-details">
@@ -78,7 +78,7 @@ layout: default  # 引用 default 布局作为父级
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.pdf-link {
+.post-link {
     display: flex; /* 使用 Flex 布局进行对齐 */
     align-items: center;
     padding: 15px 20px;
@@ -105,7 +105,7 @@ layout: default  # 引用 default 布局作为父级
     transition: color 0.2s;
 }
 
-.pdf-link:hover .pdf-title {
+.post-link:hover .pdf-title {
     color: #2980b9; /* 悬停时标题变色 */
 }
 

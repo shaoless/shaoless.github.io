@@ -1,7 +1,7 @@
 ---
 layout: blog 
-title: 所有文章
+title: 文章列表
 permalink: /blog/ 
-description: 所有文章的归档。
+description: 文章的归档
 # 可以添加其他 MMistakes 归档选项
 ---
