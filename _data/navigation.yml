@@ -1,6 +1,8 @@
 main:
   - title: 首页
     url: /
+  - title: 文档
+    url: /doucuments/
   - title: 分类
     url: /categories/
   - title: 标签
