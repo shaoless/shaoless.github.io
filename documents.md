@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home
 title: 文档列表
 permalink: /documents/
 ---
