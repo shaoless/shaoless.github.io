@@ -6,6 +6,49 @@ layout: default
   {% include head/mathjax.html %} 
 {% endif %}
 
-<div class="page-wrapper">
-    {{ content }} 
+<div class="custom-single-wrapper">
+    <section class="page__content" itemprop="text">
+        {{ content }} 
+    </section>
 </div>
+
+<style>
+/* 确保内容居中，两侧留白，并适配移动端 */
+
+.custom-single-wrapper {
+    /* 设置内容最大宽度，例如 800px，防止在大屏幕上内容过宽 */
+    max-width: 800px; 
+    
+    /* 核心居中代码：将内容块居中 */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* 添加顶部和底部边距 */
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+/* 适配移动端和留白 */
+@media screen and (max-width: 800px) {
+    .custom-single-wrapper {
+        /* 在小屏幕上，设置左右内边距，确保内容不贴边 */
+        padding-left: 15px;
+        padding-right: 15px;
+        
+        /* 移动端 Max-width 不再必要 */
+        max-width: 100%;
+        
+        /* 调整垂直边距 */
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+}
+
+/* 确保 {{ content }} 内部的元素也有基础样式 */
+.page__content {
+    /* 你可以在这里添加字体大小、行高、段落间距等样式 */
+    line-height: 1.7;
+    font-size: 1.1em;
+}
+
+</style>
