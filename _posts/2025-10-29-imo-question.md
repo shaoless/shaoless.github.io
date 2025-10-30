@@ -1,7 +1,7 @@
 ---
 title: "奥数题目和解析-AI生成"
 layout: single
-math: true
+mathjax: true
 date: 2025-10-29
 categories: [imo]
 tags: [math]
