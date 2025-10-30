@@ -2,6 +2,11 @@
 # 移除 theme: jekyll-theme-cayman
 remote_theme: mmistakes/minimal-mistakes # 使用 remote_theme 代替 theme
 
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
 # -------------------- 网站基本信息 --------------------
 title: ZenBlog
 author: Zen
