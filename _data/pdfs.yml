@@ -5,6 +5,9 @@
 - title: 伊尔亚·埃菲莫维奇·苏茨克维的博士论文（OpenAI首席科学家和创始人）
   filename: ilya_sutskever_phd_thesis.pdf
   date: 2025-10-21
+- title: DeepSeek-OCR:上下文光学压缩
+  filename: DeepSeek_OCR_paper.pdf
+  date: 2025-11-07
 
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
