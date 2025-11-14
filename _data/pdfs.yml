@@ -8,6 +8,9 @@
 - title: DeepSeek-OCR:上下文光学压缩
   filename: DeepSeek_OCR_paper.pdf
   date: 2025-11-07
+- title: HSBC付鹏私人分享（2024年11月24日）
+  filename: HSBC_FuPeng_PDF.pdf
+  date: 2025-11-15
 
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
