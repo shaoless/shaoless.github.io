@@ -11,6 +11,12 @@
 - title: HSBC付鹏私人分享（2024年11月24日）
   filename: HSBC_FuPeng_PDF.pdf
   date: 2025-11-15
+- title: bitcoin白皮书
+  filename: bitcoin_zh_cn.pdf
+  date: 2025-11-19
+- title: 高善文国投证券演讲
+  filename: 高善文国投证券演讲PDF.pdf
+  date: 2025-11-19
 
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
