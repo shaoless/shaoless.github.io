@@ -210,3 +210,22 @@ MotorTestEngine/
 ```
 
 在新建项目时，除了UI层用Prism等WPF的项目模版、其他层都是使用Class Library模版。
+
+---
+
+🎉 这样的结构设计可以让项目更加专业化，易于维护，并且可以很好的分离各个模块。
+
+如果还要增加单元测试的功能（实际开发中单元测试其实必不可少）
+
+```shell
+src/
+ ├── MotorTestEngine.UI/              ← WPF + Prism
+ ├── MotorTestEngine.Application/     ← 流程、调度、用例
+ ├── MotorTestEngine.Domain/          ← 模型、接口、纯逻辑
+ ├── MotorTestEngine.Infrastructure/  ← EF、报告、外部服务
+ └── MotorTestEngine.Shared/
+
+tests/
+ ├── MotorTestEngine.Tests.Unit/          ← 单元测试（Mock）
+ └── MotorTestEngine.Tests.Integration/   ← 集成测试（数据库/报告）
+````
