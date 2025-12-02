@@ -229,3 +229,92 @@ tests/
  ├── MotorTestEngine.Tests.Unit/          ← 单元测试（Mock）
  └── MotorTestEngine.Tests.Integration/   ← 集成测试（数据库/报告）
 ````
+
+实际生成项目结构参考
+
+```shell
+MotorTestEngine/
+│
+├── src/
+│   ├── MotorTestEngine.UI/                      ← Prism WPF 主程序
+│   │   ├── App.xaml
+│   │   ├── App.xaml.cs
+│   │   ├── Views/
+│   │   │   ├── MainWindow.xaml
+│   │   │   └── MainWindow.xaml.cs
+│   │   ├── ViewModels/
+│   │   │   └── MainWindowViewModel.cs
+│   │   ├── Modules/
+│   │   │   ├── TestingModule/
+│   │   │   │   ├── Views/
+│   │   │   │   ├── ViewModels/
+│   │   │   │   └── TestingModule.cs
+│   │   │   ├── ReportingModule/
+│   │   │   │   ├── Views/
+│   │   │   │   ├── ViewModels/
+│   │   │   │   └── ReportingModule.cs
+│   │   │   └── SettingsModule/
+│   │   │       └── SettingsModule.cs
+│   │   └── Bootstrapper/ (如果你用 PrismApplication 不需要)
+│
+│   ├── MotorTestEngine.Application/             ← 应用流程 / 业务 orchestrator
+│   │   ├── Interfaces/
+│   │   │   ├── ITestRunner.cs
+│   │   │   └── IReportWorkflow.cs
+│   │   ├── Services/
+│   │   │   ├── TestRunner.cs
+│   │   │   └── ReportWorkflow.cs
+│   │   └── DTOs/ (可选)
+│
+│   ├── MotorTestEngine.Domain/                  ← 纯业务逻辑和模型
+│   │   ├── Models/
+│   │   │   ├── Motor.cs
+│   │   │   ├── TestInput.cs
+│   │   │   └── TestResult.cs
+│   │   ├── Interfaces/
+│   │   │   ├── IMotorCalculator.cs
+│   │   │   ├── IRepository.cs
+│   │   │   └── IReportGenerator.cs
+│   │   └── Services/
+│   │       └── F1MethodService.cs
+│
+│   ├── MotorTestEngine.Infrastructure/          ← EF Core + 报告 + 外部服务
+│   │   ├── Data/
+│   │   │   ├── AppDbContext.cs
+│   │   │   ├── EfRepository.cs
+│   │   │   └── Migrations/
+│   │   ├── Reports/
+│   │   │   ├── PdfReportGenerator.cs
+│   │   │   └── ExcelReportGenerator.cs
+│   │   └── External/
+│   │       └── OpcUaClient.cs (示例)
+│
+│   ├── MotorTestEngine.Shared/                  ← 工具类、转换器、常量
+│   │   ├── Helpers/
+│   │   │   └── MathHelper.cs
+│   │   ├── Converters/
+│   │   │   └── BooleanToVisibilityConverter.cs
+│   │   └── Constants/
+│   │       └── AppConstants.cs
+│
+│
+├── tests/
+│   ├── MotorTestEngine.Tests.Unit/              ← 单元测试（Mock）
+│   │   ├── Domain/
+│   │   │   └── F1MethodServiceTests.cs
+│   │   ├── Application/
+│   │   │   └── TestRunnerTests.cs
+│   │   ├── Shared/
+│   │   │   └── MathHelperTests.cs
+│   │   └── TestBase.cs
+│
+│   └── MotorTestEngine.Tests.Integration/       ← 集成测试（真实数据库、报告）
+│       ├── Data/
+│       │   └── AppDbContextIntegrationTests.cs
+│       ├── Reports/
+│       │   └── PdfReportIntegrationTests.cs
+│       └── TestSettings.json
+│
+└── MotorTestEngine.sln
+
+```
