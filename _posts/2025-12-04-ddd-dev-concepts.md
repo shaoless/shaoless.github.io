@@ -166,3 +166,84 @@ public class Order
 
 **简化流程图:**
 `User -> [Controller] -> [ApplicationService] -> [Domain Models] <-> [Repositories (Infrastructure)] -> DB`
+
+## 实体、值对象和DTO的区别
+
+### 实体 (Entity)
+
+实体是具有唯一标识和生命周期的对象，其身份是通过ID来识别的，而不是通过属性值。
+
+```csharp
+public class Motor // 电机实体
+{
+    public int Id { get; set; }  // 标识符
+    public string MotorModel { get; set; }
+    public string MotorNo { get; set; }
+    
+    // 实体有业务行为
+    public void UpdateModel(string newModel)
+    {
+        if (string.IsNullOrEmpty(newModel))
+            throw new ArgumentException("模型不能为空");
+        MotorModel = newModel;
+    }
+}
+```
+
+### 值对象 (Value Object)
+
+值对象没有唯一标识符，通过其属性值来定义相等性的对象。
+
+```csharp
+public class Money // 金额值对象
+{
+    public decimal Amount { get; }
+    public string Currency { get; }
+    
+    public Money(decimal amount, string currency)
+    {
+        Amount = amount;
+        Currency = currency;
+    }
+    
+    public Money Add(Money other)
+    {
+        if (Currency != other.Currency)
+            throw new InvalidOperationException("不能相加不同货币");
+        return new Money(Amount + other.Amount, Currency);
+    }
+}
+```
+
+### DTO (Data Transfer Object)
+
+DTO主要用于在不同层或系统间传输数据的简单对象。
+
+```csharp
+public class MotorDto // 用于传输电机数据
+{
+    public int Id { get; set; }
+    public string MotorModel { get; set; }
+    public string MotorNo { get; set; }
+    public string DisplayName { get; set; } // 格式化后的显示名称
+    public string Status { get; set; } // 翻译后的状态显示
+}
+```
+
+## 主要区别
+
+| 特性 | 实体 | 值对象 | DTO |
+|------|------|--------|-----|
+| **标识** | 有唯一ID | 无ID，基于值相等 | 通常有ID |
+| **可变性** | 可变 | 不可变 | 可变 |
+| **行为** | 有业务行为 | 可能有相关行为 | 基本无业务行为 |
+| **生命周期** | 有 | 无 | 无 |
+| **用途** | 核心业务对象 | 描述特征 | 数据传输 |
+
+### 总结
+
+**实体**关注"身份"，有唯一标识符
+
+**值对象**关注"值"，通过属性值判断相等性
+
+**DTO**关注"传输"，用于层间数据传递
