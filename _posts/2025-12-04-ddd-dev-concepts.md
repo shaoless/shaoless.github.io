@@ -230,7 +230,7 @@ public class MotorDto // 用于传输电机数据
 }
 ```
 
-## 主要区别
+### 主要区别
 
 | 特性 | 实体 | 值对象 | DTO |
 |------|------|--------|-----|
@@ -247,3 +247,240 @@ public class MotorDto // 用于传输电机数据
 **值对象**关注"值"，通过属性值判断相等性
 
 **DTO**关注"传输"，用于层间数据传递
+
+
+## DDD目录结构示例 - 电机试验系统
+
+## 完整DDD目录结构示例
+
+```shell
+DDD/
+├── K.App.Domain/                    # 领域层
+│   ├── Entities/                    # 实体
+│   │   ├── Motor.cs                 # 电机实体
+│   │   ├── TestExecution.cs         # 测试执行实体
+│   │   └── TestType.cs              # 测试类型实体
+│   ├── ValueObjects/                # 值对象
+│   │   ├── PowerRating.cs           # 功率等级值对象
+│   │   ├── Voltage.cs               # 电压值对象
+│   │   ├── Current.cs               # 电流值对象
+│   │   ├── Temperature.cs           # 温度值对象
+│   │   └── TestResult.cs            # 测试结果值对象
+│   ├── Services/                    # 领域服务
+│   │   ├── IMotorDomainService.cs   # 领域服务接口
+│   │   ├── MotorDomainService.cs    # 领域服务实现
+│   │   └── ITestDomainService.cs    # 测试领域服务
+│   ├── Aggregates/                  # 聚合根
+│   │   └── MotorAggregate.cs        # 电机聚合根
+│   ├── Events/                      # 领域事件
+│   │   ├── MotorTestStartedEvent.cs # 电机测试开始事件
+│   │   ├── MotorTestCompletedEvent.cs # 电机测试完成事件
+│   │   └── MotorCreatedEvent.cs     # 电机创建事件
+│   ├── Exceptions/                  # 领域异常
+│   │   ├── MotorAlreadyExistsException.cs
+│   │   ├── MotorTestNotSupportedException.cs
+│   │   └── InvalidMotorConfigurationException.cs
+│   ├── Enums/                       # 领域相关枚举
+│   │   ├── MotorTestType.cs         # 电机测试类型
+│   │   ├── MotorStatus.cs           # 电机状态
+│   │   └── ConnectionType.cs        # 连接类型
+│   └── Repositories/                # 仓储接口（由领域层定义）
+│       ├── IMotorRepository.cs      # 电机仓储接口
+│       ├── ITestExecutionRepository.cs # 测试执行仓储接口
+│       └── ITestTypeRepository.cs   # 测试类型仓储接口
+│
+├── K.App.Application/               # 应用层
+│   ├── Services/                    # 应用服务
+│   │   ├── MotorApplicationService.cs # 电机应用服务
+│   │   ├── TestApplicationService.cs  # 测试应用服务
+│   │   └── DeviceApplicationService.cs # 设备应用服务
+│   ├── Commands/                    # 命令
+│   │   ├── CreateMotorCommand.cs    # 创建电机命令
+│   │   ├── ExecuteTestCommand.cs    # 执行测试命令
+│   │   └── UpdateMotorCommand.cs    # 更新电机命令
+│   ├── Queries/                     # 查询
+│   │   ├── GetMotorQuery.cs         # 获取电机查询
+│   │   ├── GetTestExecutionQuery.cs # 获取测试执行查询
+│   │   └── GetTestResultsQuery.cs   # 获取测试结果查询
+│   ├── DTOs/                        # 数据传输对象
+│   │   ├── Requests/                # 请求DTO
+│   │   │   ├── CreateMotorRequest.cs
+│   │   │   └── ExecuteTestRequest.cs
+│   │   └── Responses/               # 响应DTO
+│   │       ├── MotorDto.cs
+│   │       ├── TestResultDto.cs
+│   │       └── DeviceStatusDto.cs
+│   ├── Exceptions/                  # 应用层异常
+│   │   └── ApplicationValidationException.cs
+│   └── Mappers/                     # DTO映射器
+│       └── DomainToDtoMapper.cs
+│
+├── K.App.Infrastructure/            # 基础设施层
+│   ├── Persistence/                 # 持久化
+│   │   ├── DBContext/               # 数据库上下文
+│   │   │   ├── AppDbContext.cs      # 应用数据库上下文
+│   │   │   └── CustomDbContextFactory.cs
+│   │   ├── Entities/                # EF实体
+│   │   │   ├── MotorEntity.cs       # 电机EF实体
+│   │   │   ├── TestExecutionEntity.cs # 测试执行EF实体
+│   │   │   └── EntityTypeConfig/    # 实体类型配置
+│   │   │       ├── MotorEntityConfig.cs
+│   │   │       └── TestExecutionEntityConfig.cs
+│   │   └── Migrations/              # 数据库迁移
+│   │
+│   ├── Repositories/                # 仓储实现
+│   │   ├── MotorRepository.cs       # 电机仓储实现
+│   │   ├── TestExecutionRepository.cs # 测试执行仓储实现
+│   │   └── GenericRepository.cs     # 通用仓储实现
+│   │
+│   ├── Services/                    # 基础设施服务
+│   │   ├── ExcelExportService.cs    # Excel导出服务
+│   │   ├── ModbusCommunicationService.cs # Modbus通信服务
+│   │   ├── FileStorageService.cs    # 文件存储服务
+│   │   └── EmailNotificationService.cs # 邮件通知服务
+│   │
+│   ├── External/                    # 外部服务集成
+│   │   ├── DeviceIntegration/       # 设备集成
+│   │   │   ├── DeviceConnectionFactory.cs
+│   │   │   ├── TcpDeviceConnector.cs
+│   │   │   └── Rs485DeviceConnector.cs
+│   │   └── ThirdPartyApis/          # 第三方API
+│   │       └── ExternalDataApiService.cs
+│   │
+│   ├── Common/                      # 基础设施公共组件
+│   │   ├── Aspects/                 # AOP切面
+│   │   │   └── TransactionAspect.cs
+│   │   ├── Extensions/              # 扩展方法
+│   │   │   ├── EntityExtensions.cs
+│   │   │   └── QueryableExtensions.cs
+│   │   └── Utils/                   # 工具类
+│   │       ├── CalculationHelper.cs # 计算助手
+│   │       └── ConnectionHelper.cs  # 连接助手
+│   │
+│   └── Configuration/               # 配置
+│       ├── DependencyInjection.cs   # 依赖注入配置
+│       └── DeviceConfigurationService.cs # 设备配置服务
+│
+├── K.App.Common/                    # 共享层
+│   ├── Constants/                   # 常量
+│   │   └── RegisterAddresses.cs     # 寄存器地址常量
+│   ├── Enums/                       # 共享枚举
+│   │   └── PowerUnit.cs             # 功率单位枚举
+│   ├── Interfaces/                  # 共享接口
+│   │   ├── IDomainEvent.cs          # 领域事件接口
+│   │   ├── IEventHandler.cs         # 事件处理器接口
+│   │   └── IUnitOfWork.cs           # 工作单元接口
+│   ├── Events/                      # 共享事件
+│   │   └── IntegrationEvent.cs      # 集成事件基类
+│   └── Utils/                       # 共享工具
+│       ├── StringExtensions.cs      # 字符串扩展方法
+│       └── NumberExtensions.cs      # 数值扩展方法
+│
+└── K.App/                           # UI层 (WPF)
+    ├── Views/                       # 视图
+    │   ├── MainWindow.xaml          # 主窗口
+    │   ├── MotorViews/              # 电机相关视图
+    │   │   ├── MotorListView.xaml   # 电机列表视图
+    │   │   └── MotorDetailView.xaml # 电机详情视图
+    │   └── TestViews/               # 测试相关视图
+    │       ├── TestExecutionView.xaml # 测试执行视图
+    │       └── TestResultView.xaml    # 测试结果视图
+    │
+    ├── ViewModels/                  # 视图模型
+    │   ├── MainWindowViewModel.cs   # 主窗口视图模型
+    │   ├── MotorViewModels/         # 电机相关视图模型
+    │   │   ├── MotorListViewModel.cs
+    │   │   └── MotorDetailViewModel.cs
+    │   └── TestViewModels/          # 测试相关视图模型
+    │       ├── TestExecutionViewModel.cs
+    │       └── TestResultViewModel.cs
+    │
+    ├── Services/                    # UI服务
+    │   ├── NavigationService.cs     # 导航服务
+    │   ├── DialogService.cs         # 对话框服务
+    │   └── MessageService.cs        # 消息服务
+    │
+    ├── Modules/                     # Prism模块
+    │   ├── MotorModule.cs           # 电机模块
+    │   └── TestModule.cs            # 测试模块
+    │
+    ├── Common/                      # UI公共组件
+    │   ├── Behaviors/               # 行为
+    │   │   └── ValidationBehavior.cs
+    │   └── Converters/              # 转换器
+    │       ├── EnumToDescriptionConverter.cs
+    │       └── BooleanToVisibilityConverter.cs
+    │
+    ├── Styles/                      # 样式资源
+    │   ├── Common.xaml              # 公共样式
+    │   └── Controls.xaml            # 控件样式
+    │
+    ├── Images/                      # 图像资源
+    └── App.xaml                     # 应用程序入口
+    └── App.xaml.cs
+```
+
+### 关键目录说明：
+
+#### Domain层 (核心业务逻辑)
+
+**Entities/**: 核心业务实体，有唯一标识
+
+**ValueObjects/**: 描述性对象，无唯一标识，通过值判断相等
+
+**Services/**: 跨多个实体的业务逻辑
+
+**Events/**: 业务领域内的重要事件
+
+**Repositories/**: 由领域层定义的仓储契约
+
+#### Application层 (业务流程编排)
+
+**Services/**: 协调领域对象执行业务用例
+
+**Commands/Queries**: 命令查询模式的请求对象
+
+**DTOs/**: 层间数据传输对象
+
+#### Infrastructure层 (技术实现)
+
+**Persistence/**: 数据库访问实现
+
+**Repositories/**: 仓储接口的具体实现
+
+**Services/**: 具体的技术服务实现
+
+**External/**: 外部系统集成
+
+#### Common层 (共享组件)
+
+**Interfaces/**: 跨层共享的接口
+
+**Constants/**: 系统常量
+
+**Utils/**: 通用工具方法
+
+#### UI层 (用户界面)
+
+**Views/ViewModels**: UI展示逻辑
+
+**Services/**: UI相关的服务
+
+**Modules/**: UI模块化组织
+
+#### 依赖关系
+
+**Domain** ← (独立)
+
+**Application** ← **Domain**, **Common**
+
+**Infrastructure** ← **Application**, **Domain**, **Common**
+
+**UI** ← **Infrastructure**, **Application**, **Domain**, **Common**
+
+这样的目录结构确保了：
+
+1. **关注点分离**: 每层职责明确
+2. **单向依赖**: 依赖只能从外层指向内层
+3. **可扩展性**: 新功能可以轻松添加
+4. **可测试性**: 各层可以独立测试
