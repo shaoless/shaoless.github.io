@@ -46,60 +46,90 @@ DDD分层架构形如洋葱，核心是业务，外层是技术。其最重要�
 
 ---
 
+## 架构变体和选择
+
+DDD的经典架构是四层，但在实际项目中需要根据系统复杂度选择合适的变体。
+
+>四层 vs 三层架构的取舍
+
+### 三层架构（表现层 + 领域层 + 基础设施层）
+
+- 适用场景：业务逻辑相对简单，CRUD主导的应用，控制器可以直接调用领域对象
+- 优点：减少样板代码，设计更轻量，开发速度快
+- 缺点：业务增长时控制器容易臃肿，横切关注点（如事务、日志）难以集中处理
+- 合理性：对于小型应用或原型开发是合理的，但不适用于复杂的电机测试系统
+
+#### 四层架构的优势
+
+- 职责分离：明确区分"做什么（Domain）"和"如何做（Application）"
+- 横切关注点处理：事务、权限、日志、缓存等统一在应用层管理
+- 可测试性：各层可以独立测试，便于单元测试和集成测试
+
+#### 选择建议
+
+简单CRUD应用：三层架构就好，Application层可有可无
+中等复杂度：引入薄应用层，处理事务和基础验证
+高复杂度企业应用：坚持四层架构，领域层专注于业务规则
+
+---
+
 ## 四大核心层次
 
 ### 1. 领域层 (Domain Layer) - 业务的心脏
 
 这是系统的核心，纯粹地表达业务逻辑和规则，不应包含任何技术实现。
 
-* **职责**:
-  * 封装核心业务逻辑和规则。
-  * 定义业务对象（实体、值对象）。
-  * 定义业务流程中所需的接口（如 `IOrderRepository`）。
-* **包含内容**:
-  * **实体 (Entities)**: 如 `Order`, `Customer`。
-  * **值对象 (Value Objects)**: 如 `Address`。
-  * **领域服务 (Domain Services)**。
-  * **仓储接口 (Repository Interfaces)**。
-  * **领域事件 (Domain Events)**。
+- **职责**:
+  - 封装核心业务逻辑和规则。
+  - 定义业务对象（实体、值对象）。
+  - 定义业务流程中所需的接口（如 `IOrderRepository`）。
+
+- **包含内容**:
+  - **实体 (Entities)**: 如 `Order`, `Customer`。
+  - **值对象 (Value Objects)**: 如 `Address`。
+  - **领域服务 (Domain Services)**。
+  - **仓储接口 (Repository Interfaces)**。
+  - **领域事件 (Domain Events)**。
 
 ### 2. 应用层 (Application Layer) - 业务的协调者
 
 这一层很薄，负责协调领域对象来完成一个完整的业务用例，不包含任何业务规则。
 
-* **职责**:
-  * 为表现层提供业务入口。
-  * 协调领域对象完成任务。
-  * 处理事务、权限等。
-* **包含内容**:
-  * **应用服务 (Application Services)**: 如 `OrderService`。
-  * **数据传输对象 (DTOs)**: 用于与表现层交互。
-  * **命令/查询 (Commands/Queries)**。
+- **职责**:
+  - 为表现层提供业务入口。
+  - 协调领域对象完成任务。
+  - 处理事务、权限等。
+
+- **包含内容**:
+  - **应用服务 (Application Services)**: 如 `OrderService`。
+  - **数据传输对象 (DTOs)**: 用于与表现层交互。
+  - **命令/查询 (Commands/Queries)**。
 
 ### 3. 基础设施层 (Infrastructure Layer) - 技术的实现者
 
 这是所有具体技术细节的所在地，负责实现领域层和应用层定义的接口。
 
-* **职责**:
-  * 实现数据持久化（如与数据库交互）。
-  * 与其他外部系统通信（调用第三方API、发送邮件等）。
-  * 提供缓存、日志等具体技术方案。
-* **包含内容**:
-  * **仓储实现**: `OrderRepository_EFCore`。
-  * **数据库上下文**: `DbContext`。
-  * **Web API客户端**: `HttpClient` 封装。
-  * **消息队列实现**: RabbitMQ, Kafka 等。
+- **职责**:
+  - 实现数据持久化（如与数据库交互）。
+  - 与其他外部系统通信（调用第三方API、发送邮件等）。
+  - 提供缓存、日志等具体技术方案。
+
+- **包含内容**:
+  - **仓储实现**: `OrderRepository_EFCore`。
+  - **数据库上下文**: `DbContext`。
+  - **Web API客户端**: `HttpClient` 封装。
+  - **消息队列实现**: RabbitMQ, Kafka 等。
 
 ### 4. 表现层 (User Interface / Presentation Layer) - 用户的入口
 
 用户与系统交互的界面，负责展示信息和接收用户指令。
 
-* **职责**:
-  * 向用户显示数据。
-  * 将用户操作转换为对应用层服务的调用。
-* **包含内容**:
-  * **Web**: API控制器、MVC视图。
-  * **桌面应用**: 视图、视图模型 (ViewModels)。
+- **职责**:
+  - 向用户显示数据。
+  - 将用户操作转换为对应用层服务的调用。
+- **包含内容**:
+  - **Web**: API控制器、MVC视图。
+  - **桌面应用**: 视图、视图模型 (ViewModels)。
 
 ---
 
@@ -148,6 +178,39 @@ public class Order
 
     private void RecalculateAmount() { /* ... */ }
 }
+```
+
+### **完整的应用层服务示例**
+
+应用层负责协调领域对象并处理横切关注点：
+
+```csharp
+public class MotorTestApplicationService
+{
+    private readonly IMotorRepository _motorRepository;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ITestValidationService _validationService; // 应用层特有服务
+
+    [Transactional] // 应用层处理事务
+    public async Task<TestResultDto> ExecuteMotorTestAsync(ExecuteMotorTestCommand command)
+    {
+        // 1. 验证权限和输入（应用层职责）
+        await _validationService.ValidateTestPermissionsAsync(command.UserId, command.MotorId);
+        
+        // 2. 获取领域对象
+        var motor = await _motorRepository.GetByIdAsync(command.MotorId);
+        
+        // 3. 执行领域逻辑（领域层职责）
+        var result = motor.ExecuteTest(command.TestType, command.Parameters);
+        
+        // 4. 持久化并发布事件
+        await _unitOfWork.SaveChangesAsync();
+        
+        // 5. 返回DTO（应用层职责）
+        return new TestResultDto(result);
+    }
+}
+
 ```
 
 ---
