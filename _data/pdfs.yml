@@ -23,7 +23,9 @@
 - title: 通用规范汉字表
   filename: 通用规范汉字表.pdf
   date: 2026-01-22
-
+- title: 英语1200单词
+  filename: 1000english_word.pdf
+  date: 2026-01-25
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
 #   filename: other_doc.pdf  
