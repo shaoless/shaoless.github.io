@@ -2,7 +2,7 @@
 - title: 关于国家授时中心遭受美国国家安全局网络攻击事件的技术分析报告
   filename: IncidentReport_202510191425.pdf
   date: 2025-10-19
-- title: 伊尔亚·埃菲莫维奇·苏茨克维的博士论文（OpenAI首席科学家和创始人）
+- title: 伊尔亚·埃菲莫维奇·苏茨克维的博士论文（Openai首席科学家和创始人）
   filename: ilya_sutskever_phd_thesis.pdf
   date: 2025-10-21
 - title: DeepSeek-OCR:上下文光学压缩
@@ -11,7 +11,7 @@
 - title: HSBC付鹏私人分享（2024年11月24日）
   filename: HSBC_FuPeng_PDF.pdf
   date: 2025-11-15
-- title: bitcoin白皮书
+- title: Bitcoin白皮书
   filename: bitcoin_zh_cn.pdf
   date: 2025-11-19
 - title: 高善文国投证券演讲
@@ -25,6 +25,9 @@
   date: 2026-01-22
 - title: 英语1200单词
   filename: 1000english_word.pdf
+  date: 2026-01-25
+- title: 数学课程标准
+  filename: 数学课程标准.pdf
   date: 2026-01-25
 # 如果不在jekyll的assets/pdf/目录下，可以使用path_prefix指定路径前缀
 # - title: 其他文档
